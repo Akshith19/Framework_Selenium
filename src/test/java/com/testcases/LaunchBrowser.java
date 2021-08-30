@@ -3,10 +3,10 @@ package com.testcases;
 import com.base.TestBase;
 import com.base.TestUtil;
 import com.data.ExcelDataObject;
+import com.relevantcodes.extentreports.LogStatus;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LaunchBrowser extends TestBase {
 
     @BeforeClass
-    public void initialize()
+    public void initialize() throws IOException
         {
             ExcelDataObject obj = new ExcelDataObject();
             setup(this.getClass().getSimpleName(),obj);
@@ -30,9 +30,11 @@ public class LaunchBrowser extends TestBase {
         driver.get("https://www.google.com");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//body/div[1]/div[3]/form[1]/div[1]/div[1]/div[1]/div[1]/div[2]/input[1]")).sendKeys(dt.search);
+
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         System.out.println(screenshotFile.getAbsolutePath());
-        FileHandler.copy(screenshotFile, new File("C:\\Selenium\\Projects\\target\\screenshots\\Picscreenshot.png"));
+        FileHandler.copy(screenshotFile, new File("C:\\Selenium\\Projects\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
+        test.log(LogStatus.PASS, "Passed");
     }
 
 
@@ -40,5 +42,8 @@ public class LaunchBrowser extends TestBase {
     public void tearDown()
     {
         driver.quit();
+		 report.endTest(test);
+		 report.flush();
+		 
     }
 }
