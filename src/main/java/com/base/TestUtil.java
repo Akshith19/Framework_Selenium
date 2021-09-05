@@ -2,6 +2,10 @@ package com.base;
 
 import com.poiji.bind.Poiji;
 import com.poiji.option.PoijiOptions;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.DataProvider;
 
 import java.io.File;
@@ -38,6 +42,14 @@ public class TestUtil extends TestBase{
     }
         return people;
 
+    }
+    
+    public static File takescreenshot() throws IOException
+    {
+    	File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        System.out.println(screenshotFile.getAbsolutePath());
+        FileHandler.copy(screenshotFile, new File(System.getProperty("user.dir")+"\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
+       return screenshotFile;
     }
 
 

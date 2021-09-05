@@ -1,6 +1,5 @@
 package com.testcases;
 
-import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import com.base.TestUtil;
 import com.data.ExcelDataObject;
@@ -30,11 +29,7 @@ public class LaunchBrowser extends TestBase {
         driver.get("https://www.google.com");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//body/div[1]/div[3]/form[1]/div[1]/div[1]/div[1]/div[1]/div[2]/input[1]")).sendKeys(dt.search);
-
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        System.out.println(screenshotFile.getAbsolutePath());
-        FileHandler.copy(screenshotFile, new File("C:\\Selenium\\Projects\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
-        //test.log(Status.PASS, "Passed");
+        TestUtil.takescreenshot();
         
     }
 
