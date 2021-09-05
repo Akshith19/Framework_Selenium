@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,14 +30,11 @@ public class TestBase {
     
     public static FileInputStream fileInput=null;
     
-   public static ExtentTest test;
+    public static ExtentTest test;
     public static ExtentReports report;
 
     public void setup(String testCaseName, BaseExcelDataObject baseExcelDataObject) throws IOException
     {
-    	report = new ExtentReports(System.getProperty("user.dir")+"\\target\\surfire-report\\ExtentReportResults.html");
-    	test = report.startTest(testCaseName);
-
         this.baseExcelDataObject = baseExcelDataObject;
         this.setUp(testCaseName);
         driverSetup();
@@ -50,7 +49,7 @@ public class TestBase {
     public void driverSetup() throws IOException
     {
 
-        File file = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\properties\\Config.properties");
+        File file = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\properties\\Config.properties");
 
         fileInput = new FileInputStream(file);
         prop = new Properties();

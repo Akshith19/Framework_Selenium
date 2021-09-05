@@ -1,9 +1,9 @@
 package com.testcases;
 
+import com.aventstack.extentreports.Status;
 import com.base.TestBase;
 import com.base.TestUtil;
 import com.data.ExcelDataObject;
-import com.relevantcodes.extentreports.LogStatus;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
@@ -34,7 +34,8 @@ public class LaunchBrowser extends TestBase {
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         System.out.println(screenshotFile.getAbsolutePath());
         FileHandler.copy(screenshotFile, new File("C:\\Selenium\\Projects\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
-        test.log(LogStatus.PASS, "Passed");
+        //test.log(Status.PASS, "Passed");
+        
     }
 
 
@@ -42,8 +43,5 @@ public class LaunchBrowser extends TestBase {
     public void tearDown()
     {
         driver.quit();
-		 report.endTest(test);
-		 report.flush();
-		 
     }
 }

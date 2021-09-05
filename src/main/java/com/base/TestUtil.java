@@ -28,7 +28,7 @@ public class TestUtil extends TestBase{
         List<? extends BaseExcelDataObject> people=null;
         try
         {
-            excelpath= System.getProperty("user.dir")+"\\src\\main\\resources\\excel\\testdata.xlsx";
+            excelpath= System.getProperty("user.dir")+"\\src\\test\\resources\\excel\\testdata.xlsx";
             PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings().sheetName(sheetName).build();
             people= Poiji.fromExcel(new File(excelpath),baseExcelDataObject.getClass(),options);
         }
