@@ -44,12 +44,12 @@ public class TestUtil extends TestBase{
 
     }
     
-    public static File takescreenshot() throws IOException
+    public static void takescreenshot() throws IOException
     {
     	File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         System.out.println(screenshotFile.getAbsolutePath());
         FileHandler.copy(screenshotFile, new File(System.getProperty("user.dir")+"\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
-       return screenshotFile;
+      
     }
 
 
