@@ -24,7 +24,7 @@ public class ListenerImplements extends TestBase implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		test.log(Status.FAIL, result.getMethod().getMethodName().toUpperCase()+" Failed");
-		
+		test.log(Status.FAIL, result.getThrowable());
 	}
 
 	@Override
