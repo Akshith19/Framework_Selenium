@@ -18,18 +18,18 @@ public class ListenerImplements extends TestBase implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		test.log(Status.PASS, result.getMethod().getMethodName().toUpperCase()+" Passed");
+		test.log(Status.PASS, result.getMethod().getMethodName().toUpperCase()+" testcase Passed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		test.log(Status.FAIL, result.getMethod().getMethodName().toUpperCase()+" Failed");
+		test.log(Status.FAIL, result.getMethod().getMethodName().toUpperCase()+" testcase Failed");
 		test.log(Status.FAIL, result.getThrowable());
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		test.log(Status.SKIP, result.getMethod().getMethodName().toUpperCase()+" Skipped");
+		test.log(Status.SKIP, result.getMethod().getMethodName().toUpperCase()+" testcase Skipped");
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ListenerImplements extends TestBase implements ITestListener {
 	@Override
 	public void onStart(ITestContext context) {
 		  report = new ExtentReports();
-		  ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir")+ "\\target\\surfire-report\\Spark.html"); 
+		  ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir")+ "\\test-output\\Extent-report\\Extent.html"); 
 		  report.attachReporter(spark);
 		  spark.config().setDocumentTitle("Automation Report");
 		  spark.config().setTheme(Theme.DARK);

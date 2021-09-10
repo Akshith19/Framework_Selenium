@@ -9,12 +9,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
@@ -37,8 +34,7 @@ public class TestBase {
     {
         this.baseExcelDataObject = baseExcelDataObject;
         this.setUp(testCaseName);
-        System.out.println("Executing Testcase: "+testCaseName);
-        driverSetup();
+        driverSetup(testCaseName);
 
     }
 
@@ -47,7 +43,7 @@ public class TestBase {
        this.dtobj = (List<BaseExcelDataObject>) TestUtil.Genrate(testCaseName);
     }
 
-    public void driverSetup() throws IOException
+    public void driverSetup(String testCaseName) throws IOException
     {
 
         File file = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\properties\\Config.properties");
@@ -65,5 +61,12 @@ public class TestBase {
                 driver = new EdgeDriver();
                 break;
         }
+        logger(testCaseName,browserType);
+    }
+    
+    public void logger(String testCaseName,String browserType)
+    {
+        System.out.println("TestBase -------------------{"+testCaseName.toUpperCase()+"  }");
+        System.out.println("TestBase -------------------{"+browserType.toUpperCase()+"   }");
     }
 }

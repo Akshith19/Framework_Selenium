@@ -47,7 +47,7 @@ public class TestUtil extends TestBase{
     public static void takescreenshot() throws IOException
     {
     	File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileHandler.copy(screenshotFile, new File(System.getProperty("user.dir")+"\\target\\screenshots\\"+System.currentTimeMillis()+".png"));
+        FileHandler.copy(screenshotFile, new File(System.getProperty("user.dir")+"\\test-output\\screenshots\\"+System.currentTimeMillis()+".png"));
       
     }
     
