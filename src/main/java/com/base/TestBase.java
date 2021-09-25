@@ -3,6 +3,9 @@ package com.base;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -29,6 +32,7 @@ public class TestBase {
     
     public static ExtentTest test;
     public static ExtentReports report;
+    public static Logger log;
 
     public void setup(String testCaseName, BaseExcelDataObject baseExcelDataObject) throws IOException
     {
@@ -52,6 +56,7 @@ public class TestBase {
         prop = new Properties();
         prop.load(fileInput);
         String browserType=prop.getProperty("browser").toLowerCase();
+        logger(testCaseName,browserType);
         switch(browserType)
         {
             case "chrome": WebDriverManager.chromedriver().setup();
@@ -61,12 +66,13 @@ public class TestBase {
                 driver = new EdgeDriver();
                 break;
         }
-        logger(testCaseName,browserType);
+       
     }
     
     public void logger(String testCaseName,String browserType)
-    {
-        System.out.println("TestBase -------------------{"+testCaseName.toUpperCase()+"  }");
-        System.out.println("TestBase -------------------{"+browserType.toUpperCase()+"   }");
+    { 
+    	log =Logger.getLogger("TestBase");
+        log.info("Testcase -------------------{"+testCaseName.toUpperCase()+"}");
+        log.info("Browser --------------------{"+browserType.toUpperCase()+"}");
     }
 }
