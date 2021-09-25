@@ -72,7 +72,7 @@ public class TestBase {
     public void logger(String testCaseName,String browserType)
     { 
     	log =Logger.getLogger("TestBase");
-        log.info("Testcase -------------------{"+testCaseName.toUpperCase()+"}");
-        log.info("Browser --------------------{"+browserType.toUpperCase()+"}");
+        log.info("Testcase -----------{"+testCaseName.toUpperCase()+"}");
+        log.info("Browser ------------{"+browserType.toUpperCase()+"}");
     }
 }
