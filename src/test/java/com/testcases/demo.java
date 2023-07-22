@@ -29,11 +29,6 @@ public class demo extends TestBase {
 
         driver.manage().window().maximize();
         driver.get("https://www.google.com");
-        //Thread.sleep(1000);
-        //driver.findElement(By.xpath("//body/div[1]/div[3]/form[1]/div[1]/div[1]/div[1]/div[1]/div[2]/input[1]")).sendKeys(dt.search);
-        //TestUtil.takescreenshot();
-    	
-    	Assert.assertEquals(false, true);
         
     }
 

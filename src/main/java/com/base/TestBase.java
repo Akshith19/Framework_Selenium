@@ -76,7 +76,7 @@ public class TestBase {
             EdgeOptions optionsEdge = new EdgeOptions();
             optionsEdge.setCapability("InPrivate", true);
             
-            driver=new EdgeDriver();
+            driver=new EdgeDriver(optionsEdge);
                 break;
             case "firefox": 
             driver=new FirefoxDriver();

@@ -16,23 +16,46 @@ public class ListenerImplements extends TestBase implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		test=report.createTest(result.getMethod().getMethodName().toUpperCase());
-		
+		try {
+			MyScreenRecorder.startRecording(result.getMethod().getMethodName());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		test.log(Status.PASS, result.getMethod().getMethodName().toUpperCase()+" testcase Passed");
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		test.log(Status.FAIL, result.getMethod().getMethodName().toUpperCase()+" testcase Failed");
 		test.log(Status.FAIL, result.getThrowable());
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		test.log(Status.SKIP, result.getMethod().getMethodName().toUpperCase()+" testcase Skipped");
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -53,13 +76,14 @@ public class ListenerImplements extends TestBase implements ITestListener {
 		  spark.config().setDocumentTitle("Automation Report");
 		  spark.config().setTheme(Theme.DARK);
 		  System.out.println("Suit level test started");
-		    
+		  
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
 		report.flush();
 		System.out.println("Suit level test ended");
+		
 	}
 
 }
