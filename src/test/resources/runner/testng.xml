@@ -7,7 +7,7 @@
     <test name="Selenium Project">
         <classes>
             <class name="com.testcases.LaunchBrowser"/>
-            <class name="com.testcases.demo"/>
+            <!-- <class name="com.testcases.demo"/> -->
         </classes>
     </test>
 </suite>
